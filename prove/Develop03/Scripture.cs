@@ -11,8 +11,11 @@ class Scripture
             Words.Add(new Word(word, false));
         }
     }
+
     public Reference Reference { get; set; }
+
     public List<Word> Words { get; set; }
+
     public void Display()
     {
         Console.Clear();
@@ -21,12 +24,13 @@ class Scripture
         {
             Console.Write($"{word} ");
         }
-        
     }
+
     public void HideWord(int index)
     {
         Words[index].IsHidden = true;
     }
+
     public bool AreAllHidden()
     {
         foreach (Word word in Words)
@@ -35,10 +39,11 @@ class Scripture
             {
                 return false;
             }
-
         }
-    return true;
+        
+        return true;
     }
+
     public List<int> GetVisibleWordIndexes()
     {
         List<int> visibleWords = new List<int>(); 
@@ -49,8 +54,10 @@ class Scripture
                 visibleWords.Add(i);
             }
         }
+
         return visibleWords;
     }
+
     public int WordCount
     {
         get
@@ -58,5 +65,4 @@ class Scripture
             return Words.Count;
         }
     }
-
 }

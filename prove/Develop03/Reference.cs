@@ -8,9 +8,13 @@ class Reference
         Chapter = chapter;
         Verses = verses;
     }
+
     public string Book { get; set; }
+
     public int Chapter { get; set; }
+
     public string Verses { get; set; }
+
 
     public void Display() 
     {

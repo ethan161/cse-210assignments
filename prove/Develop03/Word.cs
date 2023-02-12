@@ -7,8 +7,11 @@ class Word
         Text = text;
         IsHidden = isHidden;
     }
+
     public string Text { get; set; }
+
     public bool IsHidden { get; set; }
+    
     public override string ToString()
     {
         if (IsHidden)

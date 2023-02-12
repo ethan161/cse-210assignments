@@ -12,6 +12,7 @@ class Program
             Scripture newScripture = new Scripture(newReference, items[3]);
             scriptures.Add(newScripture);
         }
+
         Random rnd = new Random();
         Scripture scripture = scriptures[rnd.Next(0,scriptures.Count)];
         string input;
@@ -35,7 +36,6 @@ class Program
                         break;
                     }
                 }
-                
             }
         } while (input != "quit" && !scripture.AreAllHidden());
     }
