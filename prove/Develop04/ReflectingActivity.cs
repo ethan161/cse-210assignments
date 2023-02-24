@@ -2,11 +2,17 @@ using System;
 
 public class ReflectingActivity : Activity
 {
+    public ReflectingActivity()
+    : base ("Reflecting", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.")
+    {
+
+    }
     Random rnd = new Random();
     string[] prompts = {"Think of a time you stood up for someone else.", 
                         "Think of a time when you did something really difficult.", 
                         "Think of a time when you helped someone in need.",
                         "Think of a time when you did something truly selfless."};
+
     string[] questions = {"Why was this experience meaningful to you?",
                           "Have you ever done anything like this before?",
                           "How did you get started?",
@@ -16,11 +22,14 @@ public class ReflectingActivity : Activity
                           "What could you learn from this experience that applies to other situations?",
                           "What did you learn about yourself through this experience?",
                           "How can you keep this experience in mind in the future?"};
+
     public void RunActivity()
     {
-
+        int duration = DisplayStartMessage(_name, _description);
+        Reflect(duration);
     }
-    public void Reflect()
+    
+    public void Reflect(int duration)
     {
 
     }

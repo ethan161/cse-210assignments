@@ -4,11 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Activity activity = new Activity();
+        BreathingActivity breathingActivity = new BreathingActivity();
         bool endLoop = false;
         
         while (endLoop == false)
-        {
+        {   
+            Console.Clear();
             Console.WriteLine("Menu Options:");
             Console.WriteLine(" 1. Start breathing activity");
             Console.WriteLine(" 2. Start reflecting activity");
@@ -19,9 +20,12 @@ class Program
             switch (activityInput)
             {
                 case 1:
-                
+                    breathingActivity.RunActivity();
+                    break;
                 case 2:
+                    break;
                 case 3:
+                    break;
                 case 4:
                     endLoop = true;
                     break;
