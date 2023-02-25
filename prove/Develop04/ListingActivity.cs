@@ -8,6 +8,7 @@ public class ListingActivity : Activity
     }
 
     Random rnd = new Random();
+    TimeSpan currentTime = DateTime.Now.TimeOfDay;
     string[] prompts = {"Who are people that you appreciate?",
                         "What are personal strengths of yours?",
                         "Who are people that you have helped this week?",
@@ -17,7 +18,7 @@ public class ListingActivity : Activity
     {
         int duration = DisplayStartMessage(_name, _description);
         List(duration);
-        DisplayEndMessage(_duration, _description);
+        DisplayEndMessage(_duration, _name);
     }
 
     public void List(int duration)
@@ -28,13 +29,18 @@ public class ListingActivity : Activity
         Console.WriteLine("");
         Console.WriteLine("You may begin in: ");
         Timer(5);
-        int count = 0;
         List<string> items = new List<string>();
+        DateTime date2 = DateTime.Now;
+        DateTime date1 = DateTime.Now;
+        TimeSpan timeDifference = date1.Subtract(date2);
         do 
         {
-            Console.WriteLine("> ");
+            Console.Write("> ");
             items.Add(Console.ReadLine());
-        } while (count < duration);
+            date1 = DateTime.Now;
+            timeDifference = date1.Subtract(date2);
+        } while (timeDifference.Seconds < duration);
+        Console.WriteLine("");
         Console.WriteLine($"You listed {items.Count} items!");
     }
 }
