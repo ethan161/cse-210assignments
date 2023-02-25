@@ -6,7 +6,7 @@ public class BreathingActivity : Activity
     :  base("Breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on you breathing.")
     {  
     }
-    
+
     public void RunActivity()
     {
         int duration = DisplayStartMessage(_name, _description);
@@ -16,9 +16,6 @@ public class BreathingActivity : Activity
 
     public void Breath(int duration)
     {
-        Console.Clear();
-        Console.WriteLine("Get ready...");
-        Pause(6);
         int count = 0;
         do
         {

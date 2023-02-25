@@ -27,10 +27,29 @@ public class ReflectingActivity : Activity
     {
         int duration = DisplayStartMessage(_name, _description);
         Reflect(duration);
+        DisplayEndMessage(duration, _name);
     }
-    
+
     public void Reflect(int duration)
     {
-
+        Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine("");
+        Console.WriteLine($" --- {prompts[rnd.Next(0, prompts.Length)]} --- ");
+        Console.WriteLine("");
+        Console.Write("When you have something in mind, press enter to continue.");
+        Console.ReadLine();
+        Console.WriteLine("");
+        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
+        Console.WriteLine("You may begin in: ");
+        Timer(6);
+        Console.Clear();
+        int count = 0;
+        do 
+        {
+            Console.WriteLine($"> {questions[rnd.Next(0, questions.Length)]} ");
+            Pause(10);
+            count = count + 10;
+        } while (count < duration);
+        Console.WriteLine("");
     }
 }

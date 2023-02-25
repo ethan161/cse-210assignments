@@ -5,6 +5,8 @@ class Program
     static void Main(string[] args)
     {
         BreathingActivity breathingActivity = new BreathingActivity();
+        ReflectingActivity reflectingActivity = new ReflectingActivity();
+        ListingActivity listingActivity = new ListingActivity();
         bool endLoop = false;
         
         while (endLoop == false)
@@ -23,8 +25,10 @@ class Program
                     breathingActivity.RunActivity();
                     break;
                 case 2:
+                    reflectingActivity.RunActivity();
                     break;
                 case 3:
+                    listingActivity.RunActivity();
                     break;
                 case 4:
                     endLoop = true;

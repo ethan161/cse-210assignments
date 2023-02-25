@@ -19,7 +19,11 @@ public class Activity
         Console.WriteLine(activityDescription);
         Console.WriteLine("");
         Console.Write("How long, in seconds, would you like for your session? ");
-        return _duration = int.Parse(Console.ReadLine());
+        _duration = int.Parse(Console.ReadLine());
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+        Pause(6);
+        return _duration;
     }
 
     public void DisplayEndMessage(int duration, string activityType)
@@ -30,7 +34,7 @@ public class Activity
         Console.WriteLine($"You have completed another {duration} seconds of the {activityType} Activity.");
         Pause(6);
     }
-    
+
     public void Pause(int duration)
     {
         string[] characters = {"/", "-", @"\", "|"};
