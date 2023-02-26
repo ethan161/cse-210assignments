@@ -18,20 +18,24 @@ class Program
             Console.WriteLine(" 3. Start listing activity");
             Console.WriteLine(" 4. Quit");
             Console.Write("Select a choice from the menu: ");
-            int activityInput = int.Parse(Console.ReadLine());
+            string activityInput = Console.ReadLine();
             switch (activityInput)
             {
-                case 1:
+                case "1":
                     breathingActivity.RunActivity();
                     break;
-                case 2:
+                case "2":
                     reflectingActivity.RunActivity();
                     break;
-                case 3:
+                case "3":
                     listingActivity.RunActivity();
                     break;
-                case 4:
+                case "4":
                     endLoop = true;
+                    break;
+                default:
+                    Console.WriteLine("Please enter a digit 1-4.");
+                    Thread.Sleep(3000);
                     break;
             }
         }

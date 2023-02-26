@@ -9,12 +9,12 @@ public class BreathingActivity : Activity
 
     public void RunActivity()
     {
-        int duration = DisplayStartMessage(_name, _description);
-        Breath(_duration);
-        DisplayEndMessage(duration, base._name);
+        DisplayStartMessage();
+        Breath();
+        DisplayEndMessage();
     }
 
-    public void Breath(int duration)
+    public void Breath()
     {
         int count = 0;
         do
@@ -26,6 +26,6 @@ public class BreathingActivity : Activity
             Timer(6);
             Console.WriteLine("");
             count = count + 10;
-        } while (count < duration);
+        } while (count < ActivityDuration);
     }
 }

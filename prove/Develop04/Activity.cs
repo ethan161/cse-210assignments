@@ -2,40 +2,50 @@ using System;
 
 public class Activity
 {
-    protected string _name = "";
-    protected string _description = "";
-    protected int _duration = 0;
+    private string _name = "";
+
+    private string _description = "";
+
+    private int _activityDuration = 0;
+
     public Activity(string name, string description)
     {
         _name = name;
         _description = description;
     }
 
-    public int DisplayStartMessage(string activityType, string activityDescription)
+    public int ActivityDuration
+    {
+        get
+        {
+            return _activityDuration;
+        }
+    }
+
+    public void DisplayStartMessage()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome to the {activityType} Activity.");
+        Console.WriteLine($"Welcome to the {_name} Activity.");
         Console.WriteLine("");
-        Console.WriteLine(activityDescription);
+        Console.WriteLine(_description);
         Console.WriteLine("");
         Console.Write("How long, in seconds, would you like for your session? ");
-        _duration = int.Parse(Console.ReadLine());
+        _activityDuration = int.Parse(Console.ReadLine());
         Console.Clear();
         Console.WriteLine("Get ready...");
         Pause(6);
-        return _duration;
     }
 
-    public void DisplayEndMessage(int duration, string activityType)
+    public void DisplayEndMessage()
     {
         Console.WriteLine("");
         Console.WriteLine("Well done!!");
         Pause(3);
-        Console.WriteLine($"You have completed another {duration} seconds of the {activityType} Activity.");
+        Console.WriteLine($"You have completed another {_activityDuration} seconds of the {_name} Activity.");
         Pause(6);
     }
 
-    public void Pause(int duration)
+    public void Pause(int pauseDuration)
     {
         string[] characters = {"/", "-", @"\", "|"};
         int index = 0;
@@ -44,17 +54,17 @@ public class Activity
             Thread.Sleep(500);
             Console.Write("\b \b");
             index ++;
-        } while (index <= duration);
+        } while (index <= pauseDuration);
         Console.WriteLine("\b \b");
     }
 
-    public void Timer(int duration)
+    public void Timer(int timerDuration)
     {
         do {
-            Console.Write(duration);
+            Console.Write(timerDuration);
             Thread.Sleep(1000);
             Console.Write("\b \b");
-            duration --;
-        }  while (duration > 0);
+            timerDuration --;
+        }  while (timerDuration > 0);
     }
 }
