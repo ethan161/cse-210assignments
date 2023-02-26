@@ -14,7 +14,7 @@ public class BreathingActivity : Activity
         DisplayEndMessage();
     }
 
-    public void Breath()
+    private void Breath()
     {
         int count = 0;
         do

@@ -23,7 +23,7 @@ public class ListingActivity : Activity
         DisplayEndMessage();
     }
 
-    public void List()
+    private void List()
     {
         RandomList promptList = new RandomList(_prompts);
         Console.WriteLine("List as many responses you can to the following prompt:");

@@ -35,7 +35,7 @@ public class ReflectingActivity : Activity
         DisplayEndMessage();
     }
 
-    public void Reflect()
+    private void Reflect()
     {
         RandomList promptList = new RandomList(_prompts);
         RandomList questionList = new RandomList(_questions);

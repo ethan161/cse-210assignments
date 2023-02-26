@@ -8,13 +8,13 @@ public class Activity
 
     private int _activityDuration = 0;
 
-    public Activity(string name, string description)
+    protected Activity(string name, string description)
     {
         _name = name;
         _description = description;
     }
 
-    public int ActivityDuration
+    protected int ActivityDuration
     {
         get
         {
@@ -22,7 +22,7 @@ public class Activity
         }
     }
 
-    public void DisplayStartMessage()
+    protected void DisplayStartMessage()
     {
         Console.Clear();
         Console.WriteLine($"Welcome to the {_name} Activity.");
@@ -36,7 +36,7 @@ public class Activity
         Pause(6);
     }
 
-    public void DisplayEndMessage()
+    protected void DisplayEndMessage()
     {
         Console.WriteLine("");
         Console.WriteLine("Well done!!");
@@ -45,7 +45,7 @@ public class Activity
         Pause(6);
     }
 
-    public void Pause(int pauseDuration)
+    protected void Pause(int pauseDuration)
     {
         string[] characters = {"/", "-", @"\", "|"};
         int index = 0;
@@ -58,7 +58,7 @@ public class Activity
         Console.WriteLine("\b \b");
     }
 
-    public void Timer(int timerDuration)
+    protected void Timer(int timerDuration)
     {
         do {
             Console.Write(timerDuration);
