@@ -166,7 +166,10 @@ public class Program
         Console.Write("Which goal did you accomplish? ");
         int goalNumber = int.Parse(Console.ReadLine()) - 1;
         int pointEarned = _goals[goalNumber].Accomplished();
+        ConsoleColor color = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"Congratulations! You have earned {pointEarned} points!");
+        Console.ForegroundColor = color;
         _pointsEarned += pointEarned;
         Console.WriteLine($"You now have {_pointsEarned} points.");
     }
