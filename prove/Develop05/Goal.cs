@@ -16,28 +16,15 @@ public abstract class Goal
     }
     public List<string> goalList = new List<string>();
 
+    public string Name
+    {
+        get { return _name; }
+    }
     public string[] _newGoal;
 
-    public virtual void RecordGoal()
-    {
-        ListGoals(_newGoal);
-    }
     public abstract string GetStringRepresentation();
 
-    public void ListGoals(string[] currentGoals)
-    {
-        Console.WriteLine("The goals are:");
-        int itemNumber = 1;
-        foreach (string line in currentGoals)
-            {
-                string[] items = line.Split("|");
-                string x = " ";
-                if (bool.Parse(items[4]) == true)
-                {
-                    x = "X";
-                }
-                Console.WriteLine($"{itemNumber}. [{x}] {items[1]} ({items[2]})");
-                itemNumber ++;
-            }
-    }
+    public abstract void List();
+
+    public abstract int Accomplished();
 }

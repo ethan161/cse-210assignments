@@ -2,12 +2,27 @@ using System;
 
 public class GoalChecker
 {
+    public int PointsEarned
+    {
+        get; 
+        set;
+    }
+
     public List<Goal> Goals { get; } = new List<Goal>();
+
+    public void ListGoals()
+    {
+        for (int index = 0; index < Goals.Count; index++)
+        {
+            Console.Write($"{index+1}. ");
+            Goals[index].List();
+        }
+    }
     public void SaveToFile(string filename)
     {
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            outputFile.WriteLine("0");
+            outputFile.WriteLine(PointsEarned);
             foreach (Goal goal in Goals)
             {
                 string line = goal.GetStringRepresentation();
@@ -15,11 +30,11 @@ public class GoalChecker
             }
         }
     }
-    public void loadFile(string filename)
+    public void LoadFile(string filename)
     {
         Goals.Clear();
         string[] lines = File.ReadAllLines(filename);
-        int pointsEarned = int.Parse(lines[0]);
+        PointsEarned = int.Parse(lines[0]);
         for (int index = 1; index < lines.Length; index++)
         {
             string line = lines[index];

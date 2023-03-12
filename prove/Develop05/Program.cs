@@ -10,7 +10,7 @@ class Program
         do
         {
             Console.WriteLine("");
-            Console.WriteLine($"You have 0 points.");
+            Console.WriteLine($"You have {_goalChecker.PointsEarned} points.");
             Console.WriteLine("");
             Console.WriteLine("Menu Options:");
             Console.WriteLine("   1. Create New Goal");
@@ -95,14 +95,15 @@ class Program
 
     public static void ListGoal()
     {
-
+        Console.WriteLine("The goals are:");
+        _goalChecker.ListGoals();
     }
 
     public static void LoadFile()
     {
         Console.Write("What file would you like to load? ");
         string filename = Console.ReadLine();
-        _goalChecker.loadFile(filename);
+        _goalChecker.LoadFile(filename);
     }
 
     public static void SaveFile()
@@ -114,6 +115,16 @@ class Program
 
     public static void RecordEvent()
     {
-
+        Console.WriteLine("The goals are:");
+        for (int index = 0; index < _goalChecker.Goals.Count; index++)
+        {
+            Console.WriteLine($"{index+1}. {_goalChecker.Goals[index].Name}");
+        }
+        Console.Write("Which goal did you accomplish? ");
+        int goalNumber = int.Parse(Console.ReadLine()) - 1;
+        int pointEarned = _goalChecker.Goals[goalNumber].Accomplished();
+        Console.WriteLine($"Congratulations! You have earned {pointEarned} points!");
+        _goalChecker.PointsEarned += pointEarned;
+        Console.WriteLine($"You now have {_goalChecker.PointsEarned} points.");
     }
 }

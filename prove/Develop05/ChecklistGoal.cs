@@ -15,8 +15,32 @@ public class ChecklistGoal : Goal
         _neededCompletions = neededCompletions;
         _bonusPoints = bonusPoints;
     }
+
+    public override int Accomplished()
+    {
+        _currentCompletions++;
+        if (_currentCompletions == _neededCompletions)
+        {
+            return _points + _bonusPoints;
+        }
+        else
+        {
+            return _points;
+        }
+    }
+
     public override string GetStringRepresentation()
     {
         return $"Checklist|{_name}|{_description}|{_points}|{_currentCompletions}|{_neededCompletions}|{_bonusPoints}";
+    }
+
+    public override void List()
+    {
+        string checkbox = "[ ]";
+        if (_currentCompletions >= _neededCompletions)
+        {
+            checkbox = "[X]";
+        }
+        Console.WriteLine($"{checkbox} {_name} ({_description}) -- Currently completed: {_currentCompletions}/{_neededCompletions}");
     }
 }
