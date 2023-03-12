@@ -14,13 +14,11 @@ public abstract class Goal
         _description = description;
         _points = points;
     }
-    public List<string> goalList = new List<string>();
 
     public string Name
     {
         get { return _name; }
     }
-    public string[] _newGoal;
 
     public abstract string GetStringRepresentation();
 

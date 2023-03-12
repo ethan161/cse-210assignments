@@ -1,16 +1,25 @@
 using System;
 
-class Program
+public class Program
 {
-    static GoalChecker _goalChecker = new GoalChecker();
-    static void Main(string[] args)
+    private int _pointsEarned = 0;
+
+    private List<Goal> _goals = new List<Goal>();
+
+    public static void Main(string[] args)
+    {
+        Program program = new Program();
+        program.RunProgram();
+    }
+
+    public void RunProgram()
     {
         bool endLoop = false;
         Console.WriteLine("");
         do
         {
             Console.WriteLine("");
-            Console.WriteLine($"You have {_goalChecker.PointsEarned} points.");
+            Console.WriteLine($"You have {_pointsEarned} points.");
             Console.WriteLine("");
             Console.WriteLine("Menu Options:");
             Console.WriteLine("   1. Create New Goal");
@@ -24,8 +33,7 @@ class Program
             switch(programInput)
             {
                 case "1":
-                    Goal goal = CreateGoal();
-                    _goalChecker.Goals.Add(goal);
+                    CreateGoal();
                     break;
                 case "2":
                     ListGoal();
@@ -50,7 +58,7 @@ class Program
         } while (endLoop == false);
     }
 
-    public static Goal CreateGoal()
+    private void CreateGoal()
     {
         Goal goal = null;
         do 
@@ -90,41 +98,76 @@ class Program
             }
         } while (goal == null);
 
-        return goal;
+        _goals.Add(goal);
     }
 
-    public static void ListGoal()
+    private void ListGoal()
     {
         Console.WriteLine("The goals are:");
-        _goalChecker.ListGoals();
+        for (int index = 0; index < _goals.Count; index++)
+        {
+            Console.Write($"{index+1}. ");
+            _goals[index].List();
+        }
     }
 
-    public static void LoadFile()
+    private void LoadFile()
     {
         Console.Write("What file would you like to load? ");
         string filename = Console.ReadLine();
-        _goalChecker.LoadFile(filename);
+        _goals.Clear();
+        string[] lines = File.ReadAllLines(filename);
+        _pointsEarned = int.Parse(lines[0]);
+        for (int index = 1; index < lines.Length; index++)
+        {
+            string line = lines[index];
+            string[] items = line.Split("|");
+            string goalType = items[0];
+            if (goalType == "Simple")
+            {
+                Goal goal = new SimpleGoal(items[1..]);
+                _goals.Add(goal);
+            }
+            else if (goalType == "Eternal")
+            {
+                Goal goal = new EternalGoal(items[1..]);
+                _goals.Add(goal);
+            }
+            else if (goalType == "Checklist")
+            {              
+                Goal goal = new ChecklistGoal(items[1..]);
+                _goals.Add(goal);
+            }
+        }
     }
 
-    public static void SaveFile()
+    private void SaveFile()
     {
         Console.Write("What file would you like to save this under? ");
         string filename = Console.ReadLine();
-        _goalChecker.SaveToFile(filename);
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            outputFile.WriteLine(_pointsEarned);
+            foreach (Goal goal in _goals)
+            {
+                string line = goal.GetStringRepresentation();
+                outputFile.WriteLine(line);
+            }
+        }
     }
 
-    public static void RecordEvent()
+    private void RecordEvent()
     {
         Console.WriteLine("The goals are:");
-        for (int index = 0; index < _goalChecker.Goals.Count; index++)
+        for (int index = 0; index < _goals.Count; index++)
         {
-            Console.WriteLine($"{index+1}. {_goalChecker.Goals[index].Name}");
+            Console.WriteLine($"{index+1}. {_goals[index].Name}");
         }
         Console.Write("Which goal did you accomplish? ");
         int goalNumber = int.Parse(Console.ReadLine()) - 1;
-        int pointEarned = _goalChecker.Goals[goalNumber].Accomplished();
+        int pointEarned = _goals[goalNumber].Accomplished();
         Console.WriteLine($"Congratulations! You have earned {pointEarned} points!");
-        _goalChecker.PointsEarned += pointEarned;
-        Console.WriteLine($"You now have {_goalChecker.PointsEarned} points.");
+        _pointsEarned += pointEarned;
+        Console.WriteLine($"You now have {_pointsEarned} points.");
     }
 }

@@ -16,6 +16,11 @@ public class ChecklistGoal : Goal
         _bonusPoints = bonusPoints;
     }
 
+    public ChecklistGoal(string[] items)
+    :  this(items[0], items[1], int.Parse(items[2]), int.Parse(items[3]), int.Parse(items[4]), int.Parse(items[5]))
+    {
+    }
+
     public override int Accomplished()
     {
         _currentCompletions++;
