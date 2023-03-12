@@ -40,10 +40,14 @@ class Program
                         switch(goalInput)   
                         {
                             case "1":
+                                simpleGoal.createGoal();
+                                Console.WriteLine(goal._newGoal);
                                 break;
                             case "2":
+                                eternalGoal.createGoal();
                                 break;
                             case "3":
+                                checklistGoal.createGoal();
                                 break;
                             default:
                                 Console.WriteLine("Please enter a digit 1-3.");
@@ -53,19 +57,7 @@ class Program
                     } while (goalLoop == false);
                     break;
                 case "2":
-                    Console.WriteLine("The goals are:");
-                    int itemNumber = 1;
-                    foreach (string line in goal.goalList)
-                    {
-                        string[] items = line.Split("|");
-                        string x = " ";
-                        if (bool.Parse(items[4]) == true)
-                        {
-                            x = "X";
-                        }
-                        Console.WriteLine($"{itemNumber}. [{x}] {items[1]} ({items[2]})");
-                        itemNumber ++;
-                    }
+                    goal.ListGoals(goal._newGoal);
                     Console.WriteLine("");
                     break;
                 case "3":
@@ -75,6 +67,7 @@ class Program
                     goalChecker.loadFile();
                     break;
                 case "5":
+
                     break;
                 case "6":
                     endLoop = true;

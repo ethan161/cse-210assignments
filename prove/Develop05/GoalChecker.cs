@@ -9,19 +9,16 @@ public class GoalChecker
         string filename = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            outputFile.WriteLine();
+            outputFile.WriteLine(goal.goalList);
         }
         Console.WriteLine("File successfully saved.");
     }
     public void loadFile()
     {
-        Console.WriteLine("What file you like to load? ");
+        Console.Write("What file you like to load? ");
         string filename = Console.ReadLine();
-        string[] lines = File.ReadAllLines(filename);
-        foreach {string line in lines}
-        {
-            lines[0] = _name
-        }
+        string[] loadedFile = File.ReadAllLines(filename);
+        
         Console.WriteLine("Goals successfully loaded.");
     }
 }
