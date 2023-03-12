@@ -2,11 +2,15 @@ using System;
 
 public class SimpleGoal : Goal
 {
-    public override string[] createGoal()
+    private bool _completion = false;
+    public SimpleGoal(string name, string description, int points, bool isCompleted)
+    :  base(name, description, points)
     {
-        _newGoal.Append("SimpleGoal");
-        base.createGoal();
-        _completion = false;
-        return _newGoal;
+        _completion = isCompleted;
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"Simple|{_name}|{_description}|{_points}|{_completion}";
     }
 }

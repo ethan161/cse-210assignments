@@ -2,23 +2,60 @@ using System;
 
 public class GoalChecker
 {
-    Goal goal = new Goal();
-    public void saveToFile()
+    public List<Goal> Goals { get; } = new List<Goal>();
+    public void SaveToFile(string filename)
     {
-        Console.WriteLine("What file would you like to save this under? ");
-        string filename = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            outputFile.WriteLine(goal.goalList);
+            outputFile.WriteLine("0");
+            foreach (Goal goal in Goals)
+            {
+                string line = goal.GetStringRepresentation();
+                outputFile.WriteLine(line);
+            }
         }
-        Console.WriteLine("File successfully saved.");
     }
-    public void loadFile()
+    public void loadFile(string filename)
     {
-        Console.Write("What file you like to load? ");
-        string filename = Console.ReadLine();
-        string[] loadedFile = File.ReadAllLines(filename);
-        
-        Console.WriteLine("Goals successfully loaded.");
+        Goals.Clear();
+        string[] lines = File.ReadAllLines(filename);
+        int pointsEarned = int.Parse(lines[0]);
+        for (int index = 1; index < lines.Length; index++)
+        {
+            string line = lines[index];
+            string[] items = line.Split("|");
+            string goalType = items[0];
+            if (goalType == "Simple")
+            {
+                // $"Simple|{_name}|{_description}|{_points}|{_completion}"
+                string goalName = items[1];
+                string goalDescription = items[2];
+                int goalPoints = int.Parse(items[3]);
+                bool goalCompletion = bool.Parse(items[4]);
+                Goal goal = new SimpleGoal(goalName, goalDescription, goalPoints, goalCompletion);
+                Goals.Add(goal);
+            }
+            else if (goalType == "Eternal")
+            {
+                // $"Simple|{_name}|{_description}|{_points}
+                string goalName = items[1];
+                string goalDescription = items[2];
+                int goalPoints = int.Parse(items[3]);
+                Goal goal = new EternalGoal(goalName, goalDescription, goalPoints);
+                Goals.Add(goal);
+            }
+            else if (goalType == "Checklist")
+            {
+                // {_name}|{_description}|{_points}|{_totalCompletions}|{_neededCompletions}|{_bonusPoints}
+                string goalName = items[1];
+                string goalDescription = items[2];
+                int goalPoints = int.Parse(items[3]);
+                int goalCompletions = int.Parse(items[4]);
+                int goalNeededCompletions = int.Parse(items[5]);
+                int goalBonusPoints = int.Parse(items[6]);                
+                Goal goal = new ChecklistGoal(goalName, goalDescription, goalPoints, goalCompletions, goalNeededCompletions, goalBonusPoints);
+                Goals.Add(goal);
+            }
+        }
     }
 }

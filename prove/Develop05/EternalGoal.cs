@@ -2,10 +2,12 @@ using System;
 
 public class EternalGoal : Goal
 {
-    public override string[] createGoal()
+    public EternalGoal(string name, string description, int points)
+    :  base(name, description, points)
     {
-        _newGoal.Append("EternalGoal");
-        base.createGoal();
-        return _newGoal;
+    }
+    public override string GetStringRepresentation()
+    {
+        return $"Eternal|{_name}|{_description}|{_points}";
     }
 }

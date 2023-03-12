@@ -2,16 +2,21 @@ using System;
 
 public class ChecklistGoal : Goal
 {
-    Goal goal = new Goal();
-    public override string[] createGoal()
+    private int _neededCompletions = 0;
+
+    private int _bonusPoints = 0;
+
+    private int _currentCompletions = 0;
+
+    public ChecklistGoal(string name, string description, int points, int currentCompletions, int neededCompletions, int bonusPoints)
+    :  base(name, description, points)
     {
-        _newGoal.Append("ChecklistGoal");
-        base.createGoal();
-        Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
-        goal._newGoal.Append($"{Console.ReadLine()}|");
-        goal._newGoal.Append("0");
-        Console.WriteLine("What is the bonus for accomplishing it that many times? ");
-        goal._newGoal.Append($"{Console.ReadLine()}|");
-        return _newGoal;
+        _currentCompletions = currentCompletions;
+        _neededCompletions = neededCompletions;
+        _bonusPoints = bonusPoints;
+    }
+    public override string GetStringRepresentation()
+    {
+        return $"Checklist|{_name}|{_description}|{_points}|{_currentCompletions}|{_neededCompletions}|{_bonusPoints}";
     }
 }

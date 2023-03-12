@@ -1,38 +1,34 @@
 using System;
 
-public class Goal
+public abstract class Goal
 {
-    private string _name = "";
+    protected string _name = "";
 
-    private string _description = "";
+    protected string _description = "";
 
-    public int _points = 0;
+    protected int _points = 0;
 
-    public bool _completion = false;
-
-    public List<string> goalList = new List<string>();
-    public string[] _newGoal;
-    public virtual string[] createGoal()
+    protected Goal(string name, string description, int points)
     {
-        Console.WriteLine("What is the name of your goal? ");
-        _newGoal.Append($"{Console.ReadLine()}|");
-        Console.WriteLine("What is a short description of it? ");
-        _newGoal.Append($"{Console.ReadLine()}|");
-        Console.WriteLine("How many points are associated with this goal? ");
-        _newGoal.Append($"{Console.ReadLine()}|");
-        return _newGoal;
+        _name = name;
+        _description = description;
+        _points = points;
     }
+    public List<string> goalList = new List<string>();
+
+    public string[] _newGoal;
 
     public virtual void RecordGoal()
     {
-
+        ListGoals(_newGoal);
     }
+    public abstract string GetStringRepresentation();
 
-    public void ListGoals()
+    public void ListGoals(string[] currentGoals)
     {
         Console.WriteLine("The goals are:");
         int itemNumber = 1;
-        foreach (string line in goalList)
+        foreach (string line in currentGoals)
             {
                 string[] items = line.Split("|");
                 string x = " ";

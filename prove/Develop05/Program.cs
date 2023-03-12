@@ -2,19 +2,15 @@ using System;
 
 class Program
 {
+    static GoalChecker _goalChecker = new GoalChecker();
     static void Main(string[] args)
     {
-        Goal goal = new Goal();
-        SimpleGoal simpleGoal = new SimpleGoal();
-        EternalGoal eternalGoal = new EternalGoal();
-        ChecklistGoal checklistGoal = new ChecklistGoal();
-        GoalChecker goalChecker = new GoalChecker();
         bool endLoop = false;
         Console.WriteLine("");
         do
         {
             Console.WriteLine("");
-            Console.WriteLine($"You have {goal._points} points.");
+            Console.WriteLine($"You have 0 points.");
             Console.WriteLine("");
             Console.WriteLine("Menu Options:");
             Console.WriteLine("   1. Create New Goal");
@@ -23,51 +19,25 @@ class Program
             Console.WriteLine("   4. Load Goals");
             Console.WriteLine("   5. Record Event");
             Console.WriteLine("   6. Quit");
-            Console.WriteLine("Select a choice from the menu: ");
+            Console.Write("Select a choice from the menu: ");
             string programInput = Console.ReadLine();
             switch(programInput)
             {
                 case "1":
-                    bool goalLoop = false;
-                    do 
-                    {
-                        Console.WriteLine("The types of goals are: ");
-                        Console.WriteLine("   1. Simple Goal");
-                        Console.WriteLine("   2. Eternal Goal");
-                        Console.WriteLine("   3. Checklist Goal");
-                        Console.WriteLine("Which type of goal would you like to create? ");
-                        string goalInput = Console.ReadLine();
-                        switch(goalInput)   
-                        {
-                            case "1":
-                                simpleGoal.createGoal();
-                                Console.WriteLine(goal._newGoal);
-                                break;
-                            case "2":
-                                eternalGoal.createGoal();
-                                break;
-                            case "3":
-                                checklistGoal.createGoal();
-                                break;
-                            default:
-                                Console.WriteLine("Please enter a digit 1-3.");
-                                Thread.Sleep(3000);
-                                break;
-                        }
-                    } while (goalLoop == false);
+                    Goal goal = CreateGoal();
+                    _goalChecker.Goals.Add(goal);
                     break;
                 case "2":
-                    goal.ListGoals(goal._newGoal);
-                    Console.WriteLine("");
+                    ListGoal();
                     break;
                 case "3":
-                    goalChecker.saveToFile();
+                    SaveFile();
                     break;
                 case "4":
-                    goalChecker.loadFile();
+                    LoadFile();
                     break;
                 case "5":
-
+                    RecordEvent();
                     break;
                 case "6":
                     endLoop = true;
@@ -78,5 +48,72 @@ class Program
                     break;
             }
         } while (endLoop == false);
+    }
+
+    public static Goal CreateGoal()
+    {
+        Goal goal = null;
+        do 
+        {
+            Console.WriteLine("The types of goals are: ");
+            Console.WriteLine("   1. Simple Goal");
+            Console.WriteLine("   2. Eternal Goal");
+            Console.WriteLine("   3. Checklist Goal");
+            Console.Write("Which type of goal would you like to create? ");
+            string goalInput = Console.ReadLine();
+            
+            Console.Write("What is the name of your goal? ");
+            string goalName = Console.ReadLine();
+            Console.Write("What is a short description of it? ");
+            string goalDescription = Console.ReadLine();
+            Console.Write("How many points are associated with this goal? ");
+            int goalPoints = int.Parse(Console.ReadLine());
+            if (goalInput == "1")
+            {
+                goal = new SimpleGoal(goalName, goalDescription, goalPoints, false);
+            }
+            else if (goalInput == "2")
+            {
+                goal = new EternalGoal(goalName, goalDescription, goalPoints);
+            }
+            else if (goalInput == "3")
+            {
+                Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+                int neededCompletions = int.Parse(Console.ReadLine());
+                Console.Write("What is the bonus for accomplishing it that many times? ");
+                int bonusPoints = int.Parse(Console.ReadLine());
+                goal = new ChecklistGoal(goalName, goalDescription, goalPoints, 0, neededCompletions, bonusPoints);
+            }
+            else
+            {
+                Console.WriteLine("Please enter a digit 1-3.");
+            }
+        } while (goal == null);
+
+        return goal;
+    }
+
+    public static void ListGoal()
+    {
+
+    }
+
+    public static void LoadFile()
+    {
+        Console.Write("What file would you like to load? ");
+        string filename = Console.ReadLine();
+        _goalChecker.loadFile(filename);
+    }
+
+    public static void SaveFile()
+    {
+        Console.Write("What file would you like to save this under? ");
+        string filename = Console.ReadLine();
+        _goalChecker.SaveToFile(filename);
+    }
+
+    public static void RecordEvent()
+    {
+
     }
 }
