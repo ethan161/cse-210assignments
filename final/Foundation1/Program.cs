@@ -1,17 +1,16 @@
 using System;
 
-class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Program program = new Program();
-        program.Display();
+        List<Video> videos = program.CreateVideos();
+        program.Display(videos);
     }
 
-    public void Display()
+    private void Display(List<Video> videos)
     {
-
-        List<Video> videos = CreateVideos();
         foreach (Video newVideo in videos)
         {
             Console.WriteLine();
@@ -24,7 +23,7 @@ class Program
         }
     }
 
-    public List<Video> CreateVideos()
+    private List<Video> CreateVideos()
     {
         Video video1 = new Video("How to Make a Pancake", "Joe34", 145);
         video1.Comments.Add(new Comment("John", "Nice video!"));
@@ -48,5 +47,4 @@ class Program
 
         return videos;
     }
-
 }

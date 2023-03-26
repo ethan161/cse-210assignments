@@ -1,14 +1,14 @@
 using System;
 
-class Video
+public class Video
 {
-    public string Title {get; init;}
+    public string Title { get; init; }
 
-    public string Author {get; init;}
+    public string Author { get; init; }
 
-    public int Length {get; init;}
+    public int Length { get; init; }
 
-    public List<Comment> Comments {get; init;}
+    public List<Comment> Comments { get; init; }
 
     public Video(string title, string author, int length)
     {

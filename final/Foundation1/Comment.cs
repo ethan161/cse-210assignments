@@ -1,10 +1,10 @@
 using System;
 
-class Comment
+public class Comment
 {
-    public string Author {get; init;}
+    public string Author { get; init; }
 
-    public string Text {get; init;}
+    public string Text { get; init; }
 
     public Comment(string author, string text)
     {
