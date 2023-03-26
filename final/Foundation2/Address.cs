@@ -10,6 +10,15 @@ public class Address
 
     public string Country { get; init; }
 
+    public Address(string street, string city, string province, string country)
+    {
+        Street = street;
+        City = city;
+        Province = province;
+        Country = country;
+    }
+
+
     public string FormatAddress()
     {
         return $"{Street}\n{City}, {Province}\n{Country}";

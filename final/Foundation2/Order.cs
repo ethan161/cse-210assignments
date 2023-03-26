@@ -32,12 +32,12 @@ public class Order
 
     public string PackingLabel()
     {
-        string label = "";
+        List<string> items = new List<string>();
         foreach (Product product in Products)
         {
-            label += $"{product.Name} | {product.ProductID}\n";
+            items.Add($"{product.Name} | {product.ProductID}");
         }
-        return label;
+        return string.Join("\n", items);
     }
 
     public string ShippingLabel()
