@@ -12,10 +12,11 @@ public class Program
 
     private void Display(List<Order> orders)
     {
+        string divider = new string ('=',30);
         Console.Clear();
         foreach (Order order in orders)
         {
-            Console.WriteLine("=======================================");
+            Console.WriteLine(divider);
             Console.WriteLine("Packing Label:");
             Console.WriteLine(order.PackingLabel());
             Console.WriteLine();
@@ -23,9 +24,10 @@ public class Program
             Console.WriteLine(order.ShippingLabel());
             Console.WriteLine();
             Console.WriteLine("Total Cost:");
-            Console.WriteLine($"${order.CalculateTotalCost()}");
+            Console.WriteLine($"${order.TotalCost()}");
         }
-    Console.WriteLine("=======================================");
+
+        Console.WriteLine(divider);
     }
 
     private List<Order> CreateOrders()

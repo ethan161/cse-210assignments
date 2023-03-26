@@ -18,7 +18,6 @@ public class Address
         Country = country;
     }
 
-
     public string FormatAddress()
     {
         return $"{Street}\n{City}, {Province}\n{Country}";
@@ -26,13 +25,6 @@ public class Address
 
     public bool IsInUSA()
     {
-        if (Country == "USA")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Country == "USA";
     }
 }

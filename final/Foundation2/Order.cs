@@ -12,13 +12,14 @@ public class Order
         Products = new List<Product>();
     }
 
-    public decimal CalculateTotalCost()
+    public decimal TotalCost()
     {
         decimal cost = 0;
         foreach (Product product in Products)
         {
             cost += product.TotalPrice();
         }
+
         if (Customer.IsInUSA())
         {
             cost += 5;
@@ -27,6 +28,7 @@ public class Order
         {
             cost += 35;
         }
+
         return cost;
     }
 
@@ -37,6 +39,7 @@ public class Order
         {
             items.Add($"{product.Name} | {product.ProductID}");
         }
+        
         return string.Join("\n", items);
     }
 
