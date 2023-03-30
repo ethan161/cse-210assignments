@@ -2,8 +2,17 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Hello Foundation3 World!");
+        Program program = new Program();
+        program.CreateEvents();
+        
+    }
+
+    public void CreateEvents()
+    {
+        Lecture lecture = new Lecture("Teacher Convention", "01/01/2024", "07:00pm", "A lecture about how to become a more caring teacherd", new Address("32nd Street", "Toronto", "Ontario", "Canada"), "Jake Nacho", 250);
+        Reception reception = new Reception("John and Susie's Wedding Reception", "02/14/2024", "5:00pm - 8:30pm", "Come join us!", new Address("Park Ave", "New York City", "New York", "USA"), "john&susie2024@gmail.com");
+        Outdoor outdoor = new Outdoor("Memorial Day Gathering", "05/24/2023", "2:00pm", "A Barbeque and Kickball Tournament", new Address("Ridge Crest Dr", "Springville", "Utah", "USA"), "Clear");
     }
 }
