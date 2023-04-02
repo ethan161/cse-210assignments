@@ -2,18 +2,21 @@ using System;
 
 public abstract class Event
 {
-    public string _eventTitle = "";
+    protected string _eventType = "";
 
-    public string _date = "";
+    protected string _eventTitle = "";
 
-    public string _time = "";
+    protected string _date = "";
 
-    public string _description = "";
+    protected string _time = "";
 
-    public Address _address { get; init; }
+    protected string _description = "";
 
-    public Event(string eventTitle, string date, string time, string description, Address address)
+    protected Address _address { get; init; }
+
+    protected Event(string eventType, string eventTitle, string date, string time, string description, Address address)
     {
+        _eventType = eventType;
         _eventTitle = eventTitle; 
         _date = date;
         _time = time;
@@ -21,11 +24,8 @@ public abstract class Event
         _address = address;
     }
 
-    protected abstract string EventType { get; }
-
     public void StandardDetails()
     {
-        // title, description, date, time, and address
         Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n");
         Console.WriteLine(_address.FormatAddress());
     }
@@ -34,7 +34,6 @@ public abstract class Event
 
     public void ShortDescription()
     {
-        
-        Console.WriteLine($"{EventType}\n{_eventTitle}\n{_date}");
+        Console.WriteLine($"{_eventType}\n{_eventTitle}\n{_date}");
     }
 }
