@@ -3,16 +3,26 @@ using System;
 public class Cycling : Activity
 {
 
-    public int _speed = 0;
+    public decimal _speed = 0;
 
-    public Cycling(string date, int activityLength, int speed)
-    :  base(date, activityLength)
+    public Cycling(string date, int activityLength, decimal speed)
+    :  base("Cycling", date, activityLength)
     {
         _speed = speed;
     }
 
-    public override void GetSummary()
+    public override decimal GetDistance()
     {
-        throw new NotImplementedException();
+        return _speed * _activityLength / 60m;
+    }
+
+    public override decimal GetPace()
+    {
+        return 60m / GetSpeed();
+    }
+
+    public override decimal GetSpeed()
+    {
+        return _speed;
     }
 }
