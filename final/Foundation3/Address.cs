@@ -15,7 +15,7 @@ public class Address
         Street = street;
         City = city;
         Province = province;
-        Country = country;
+        Country = country; 
     }
 
     public string FormatAddress()

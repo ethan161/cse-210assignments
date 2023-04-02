@@ -9,9 +9,11 @@ public class Reception : Event
     {
     }
 
+    protected override string EventType => "Reception";
+
     public override void FullDetails()
     {
-        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\nRSVP at: {_rsvp}");
-        Console.WriteLine(address.FormatAddress());
+        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n\nRSVP at: {_rsvp}");
+        Console.WriteLine(_address.FormatAddress());
     }
 }

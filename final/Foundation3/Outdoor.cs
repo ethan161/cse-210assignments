@@ -9,9 +9,10 @@ public class Outdoor : Event
     {
     }
 
+    protected override string EventType => "Outdoor";
     public override void FullDetails()
     {
         Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\nWeather Forecast: {_weather}");
-        Console.WriteLine(address.FormatAddress());
+        Console.WriteLine(_address.FormatAddress());
     }
-}
+} 

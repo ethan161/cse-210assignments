@@ -10,28 +10,31 @@ public abstract class Event
 
     public string _description = "";
 
-    public Address address { get; init; }
+    public Address _address { get; init; }
 
     public Event(string eventTitle, string date, string time, string description, Address address)
     {
-        _eventTitle = eventTitle;
+        _eventTitle = eventTitle; 
         _date = date;
         _time = time;
         _description = description;
+        _address = address;
     }
+
+    protected abstract string EventType { get; }
 
     public void StandardDetails()
     {
         // title, description, date, time, and address
-        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}");
-        Console.WriteLine(address.FormatAddress());
+        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n");
+        Console.WriteLine(_address.FormatAddress());
     }
 
     public abstract void FullDetails();
 
     public void ShortDescription()
     {
-        // type of event, title, date
-        Console.WriteLine($"");
+        
+        Console.WriteLine($"{EventType}\n{_eventTitle}\n{_date}");
     }
 }

@@ -10,10 +10,12 @@ public class Lecture : Event
     :  base(eventTitle, date, time, description, address)
     {
     }
-        // title, description, date, time, address, lectures: speaker name, receptions: email for rsvp, outdoor: weather
+
+    protected override string EventType => "Lecture";
+
     public override void FullDetails()
     {
         Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n{_speakerName}");
-        Console.WriteLine(address.FormatAddress());
+        Console.WriteLine(_address.FormatAddress());
     }
 }
