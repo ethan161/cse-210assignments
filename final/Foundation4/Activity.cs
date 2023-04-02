@@ -2,11 +2,11 @@ using System;
 
 public abstract class Activity
 {
-    public string _date = "";
+    protected string _date = "";
 
-    public int _activityLength = 0;
+    protected int _activityLength = 0;
 
-    public string _activityType = "";
+    protected string _activityType = "";
 
     public Activity(string activityType, string date, int activityLength)
     {
@@ -14,6 +14,7 @@ public abstract class Activity
         _date = date;
         _activityLength = activityLength;
     }
+    
     public string GetSummary()
     {
         decimal distance = Math.Round(GetDistance(), 2);
@@ -23,6 +24,8 @@ public abstract class Activity
     }
 
     public abstract decimal GetDistance();
+
     public abstract decimal GetSpeed();
+
     public abstract decimal GetPace();
 }

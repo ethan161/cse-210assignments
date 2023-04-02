@@ -2,7 +2,7 @@ using System;
 
 public class Running : Activity
 {
-    int _distance = 0;
+    protected int _distance = 0;
 
     public Running(string date, int activityLength, int distance)
     :  base("Running", date, activityLength)

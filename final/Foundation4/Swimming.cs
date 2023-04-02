@@ -2,7 +2,7 @@ using System;
 
 public class Swimming : Activity
 {
-    public int _numberOfLaps = 0;
+    protected int _numberOfLaps = 0;
 
     public Swimming(string date, int activityLength, int numberOfLaps)
     :  base("Swimming", date, activityLength)
