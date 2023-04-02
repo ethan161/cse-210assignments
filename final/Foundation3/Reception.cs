@@ -13,6 +13,6 @@ public class Reception : Event
     public override void FullDetails()
     {
         Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n\nRSVP at: {_rsvp}");
-        Console.WriteLine(_address.FormatAddress());
+        Console.WriteLine(_address);
     }
 }

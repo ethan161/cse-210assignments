@@ -12,7 +12,7 @@ public class Outdoor : Event
 
     public override void FullDetails()
     {
-        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\nWeather Forecast: {_weather}");
-        Console.WriteLine(_address.FormatAddress());
+        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\nWeather Forecast: {_weather}\n");
+        Console.WriteLine(_address);
     }
 } 

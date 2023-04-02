@@ -15,7 +15,7 @@ public class Lecture : Event
 
     public override void FullDetails()
     {
-        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n{_speakerName}\nEvent Capacity: {_eventCapacity}");
-        Console.WriteLine(_address.FormatAddress());
+        Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\nHosted by: {_speakerName}\nEvent Capacity: {_eventCapacity}\n");
+        Console.WriteLine(_address);
     }
 }

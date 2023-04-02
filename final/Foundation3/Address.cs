@@ -2,29 +2,24 @@ using System;
 
 public class Address
 {
-    public string Street { get; init; }
+    public string _street = "";
 
-    public string City { get; init; }
+    public string _city = "";
 
-    public string Province { get; init; }
+    public string _province = "";
 
-    public string Country { get; init; }
+    public string _country = "";
 
     public Address(string street, string city, string province, string country)
     {
-        Street = street;
-        City = city;
-        Province = province;
-        Country = country; 
+        _street = street;
+        _city = city;
+        _province = province;
+        _country = country; 
     }
 
-    public string FormatAddress()
+    public override string ToString()
     {
-        return $"{Street}\n{City}, {Province}\n{Country}";
-    }
-
-    public bool IsInUSA()
-    {
-        return Country == "USA";
+        return $"{_street}\n{_city}, {_province}\n{_country}";
     }
 }

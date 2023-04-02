@@ -28,7 +28,7 @@ public class Program
             "Teacher Convention", 
             "01/01/2024", 
             "07:00pm", 
-            "A lecture about how to become a more caring teachers", 
+            "A lecture about how to become a more caring teacher", 
             new Address("32nd Street", "Toronto", "Ontario", "Canada"), 
             "Jake Nacho", 
             250);

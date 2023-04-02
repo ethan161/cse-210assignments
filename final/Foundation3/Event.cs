@@ -27,7 +27,7 @@ public abstract class Event
     public void StandardDetails()
     {
         Console.WriteLine($"{_eventTitle}\n{_date} | {_time}\n{_description}\n");
-        Console.WriteLine(_address.FormatAddress());
+        Console.WriteLine(_address);
     }
 
     public abstract void FullDetails();
